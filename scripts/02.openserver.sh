@@ -16,7 +16,23 @@ composer setup
 EOF
 
 # Permissions
-sudo chown -R $USER:$USER $HOME
-sudo chmod -R 775 $HOME/.openserver
+sudo chown -R $USER:$USER $HOME/.openserver
 sudo chmod -R 775 $HOME/.openserver/storage
 sudo chmod -R 775 $HOME/.openserver/bootstrap/cache
+
+sudo tee "/etc/supervisor/conf.d/openserver.conf" >/dev/null <<EOF
+[program:openserver]
+process_name=%(program_name)s
+user=$USER
+directory=$HOME/.openserver
+command=/usr/bin/php artisan serve --host=0.0.0.0 --port=8000
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=$HOME/.openserver/storage/logs/openserver.log
+stopwaitsecs=3600
+EOF
+
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl status
