@@ -6,13 +6,15 @@ git clone https://github.com/codedevper/laravel-exp.git "$HOME/.openserver"
 cd $HOME/.openserver
 
 git fetch origin
-git checkout 12.openserver-live
+git checkout 12.openserver
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 composer setup
+
+php artisan migrate:fresh --seed
 EOF
 
 # Permissions
