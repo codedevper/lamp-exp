@@ -7,12 +7,12 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
 source "$HOME/.nvm/nvm.sh"
 
 # Download and install Node.js:
-nvm install 22
+nvm install 24
 
 # Verify the Node.js version:
-node -v # Should print "v22.23.1".
+node -v # Should print "v24.18.0".
 
 # Verify npm version:
-npm -v # Should print "10.9.8".
+npm -v # Should print "11.16.0".
 
 which node

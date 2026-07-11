@@ -3,15 +3,15 @@
 system_check
 require_root
 
-ARG_HOME=/home/server
-ARG_USER=server
+ARG_HOME=/home/master
+ARG_USER=master
 
 if id $ARG_USER &>/dev/null; then
 loginctl terminate-user $ARG_USER 2>/dev/null || true
 pkill -9 -u $ARG_USER 2>/dev/null || true
 sleep 2
 
-sudo rm -rf $HOME/.openserver
+sudo rm -rf $HOME/.ops
 sudo rm -rf /etc/supervisor/conf.d/openserver.conf
 
 sudo supervisorctl reread 2>/dev/null || true

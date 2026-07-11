@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-ARG_HOME=/home/server
-ARG_USER=server
+ARG_HOME=/home/master
+ARG_USER=master
 
 sudo rm -rf /etc/supervisor/conf.d/openserver.conf
 
